@@ -17,15 +17,19 @@
     $: subject_topics = SubjectTopics[subject]
 
 
+
     const debounce: number = 30000;
 
     function handleGeneration() {
+        starred.set(true)
         generation_disabled.set(true)
         last_generated.set(Date.now())
         generated = createQuestion(subject, topic, ["All"], 3)
+        generated.then(() => {
+            starred.set(false)
+        })
         generated_ques.set(generated)
         current_countdown.set(debounce)
-        starred.set(false)
         questionOpen.set(true)
     }
 
@@ -79,24 +83,27 @@
         </select>
     </div>
     {#if $questionOpen}
-    {#await generated}
-        <div class="flex flex-col gap-4 w-full p-5 overflow-y-scroll h-full">
-            <div class="skeleton h-40"></div>
-            <div class="skeleton h-20"></div>
-            <div class="skeleton h-20"></div>
-            <div class="skeleton h-20"></div>
-        </div>
-    {:then question}
-        <div class="flex flex-col gap-4 w-full p-5 overflow-y-scroll h-full">
-            <div class=""><SvelteMarkdown source={question.questions.question} /></div>
-            {#each question.questions.parts as part}
-                <div><SvelteMarkdown source={part.part}/></div>
-                <div class="blur transition duration-300 hover:blur-0"><SvelteMarkdown source={part.answer}/></div>
-            {/each}
-        </div>
-    {:catch error}
-        <p style="color: red">{error.message}</p>
-    {/await}
+        {#await generated}
+            <div class="flex flex-col gap-4 w-full p-5 overflow-y-scroll h-full">
+                <div class="skeleton h-40"></div>
+                <div class="skeleton h-20"></div>
+                <div class="skeleton h-20"></div>
+                <div class="skeleton h-20"></div>
+            </div>
+        {:then question}
+            <!--<p hidden>{starred.set(false)}</p>-->
+            <div class="flex flex-col gap-4 w-full p-5 overflow-y-scroll h-full">
+                <div class=""><SvelteMarkdown source={question.questions.question} /></div>
+                {#each question.questions.parts as part, i}
+                    <div class="inline-flex"><span class="font-bold">{i+1}.</span><SvelteMarkdown source={part.part}/></div>
+                    <div class="blur transition duration-300 hover:blur-0"><SvelteMarkdown source={part.answer}/></div>
+                {/each}
+            </div>
+        {:catch error}
+            <div class="flex flex-col gap-4 w-full p-5 overflow-y-scroll h-full">
+                <p style="color: red" class="text-xl">{error.message}</p>
+            </div>
+        {/await}
     {:else}
         <div class="flex flex-col gap-4 w-full p-5 overflow-y-scroll h-full">
         <h1 class='text-primary text-xl'>
