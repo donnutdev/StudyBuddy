@@ -1,9 +1,9 @@
 <script lang="ts">
-    import Topicals from "$lib/components/Topicals.svelte";
+    import Topicals from "$lib/shared/Topicals.svelte";
 
     export let data;
-    import PastPapers from "$lib/components/PastPapers.svelte";
-    import QuestionCreator from "$lib/components/QuestionCreator.svelte";
+    import PastPapers from "$lib/shared/PastPapers.svelte";
+    import QuestionCreator from "$lib/shared/QuestionCreator.svelte";
     import {goto} from "$app/navigation";
 
     let active_tab: string = "topicals";
@@ -13,6 +13,10 @@
 
     $: if (session == null) {
         goto('/account')
+    }
+
+    const alertHandler = () => {
+
     }
 </script>
 
@@ -51,7 +55,7 @@
                         {:else if active_tab === "creator"}
                             <QuestionCreator  {supabase} {session}/>
                         {:else if active_tab === "topicals"}
-                            <Topicals/>
+                            <Topicals on:alert/>
                         {/if}
                 </div>
             {/key}

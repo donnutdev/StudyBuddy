@@ -3,17 +3,14 @@
     import SvelteMarkdown from "svelte-markdown";
     export let supabase: SupabaseClient;
     export let session: Session;
-    import {createQuestion, createQuestionTest} from "$lib/geminiApi";
+    import {createQuestion} from "$lib/geminiApi";
     import {SubjectTopics} from "$lib/static-files/SubjectTopics";
     import {generated_ques, generation_disabled, last_generated, current_countdown, starred, questionOpen} from "$lib/public/stores";
     import {onMount, onDestroy} from "svelte";
-    import {goto} from "$app/navigation";
-    import {mdiThumbUp} from "@mdi/js";
 
     let subject: string = "Physics";
     let topic: string;
     let generated: any = $generated_ques;
-    let current_count = $current_countdown;
 
     let countdownInterval: any;
 
@@ -29,6 +26,7 @@
         generated_ques.set(generated)
         current_countdown.set(debounce)
         starred.set(false)
+        questionOpen.set(true)
     }
 
     async function handleStar() {

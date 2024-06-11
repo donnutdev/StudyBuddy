@@ -1,8 +1,14 @@
+import type {PostgrestError} from "@supabase/supabase-js";
+
+type Topical = {
+    data: any[],
+    error: PostgrestError
+}
+
 import {supabaseTopicals} from "$lib/supabaseClient";
 import {subjectCodes} from "$lib/static-files/SubjectCodes";
-import {TOPICS} from "$lib/static-files/MHTopicBinds";
 
-export async function getTopicals(subject: string, topics: {string: boolean}, years: {number: boolean}): Promise<{}> {
+export async function getTopicals(subject: string, topics: {string: boolean}, years: {number: boolean}): Promise<Topical> {
     let topics_table: string[] = []
     let years_table: number[] = []
     for (let name in topics) {
@@ -22,6 +28,7 @@ export async function getTopicals(subject: string, topics: {string: boolean}, ye
         .from("questions")
         .select()
         .eq("board", "A Levels")
+        .eq("question_type", 1)
         //@ts-ignore
         .eq("subject", subjectCodes[subject])
         .overlaps("topics", topics_table)
