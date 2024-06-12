@@ -11,8 +11,9 @@ export async function createQuestion(subject: string, topic: string, numParts: n
             }
         })
         const questions = await res.json()
-        if (questions.error) {
-            throw new Error("An error occured while processing this request\nDetails: "+questions.error)
+        if (questions.message) {
+            console.log(questions)
+            throw new Error("An error occurred while processing this request\nDetails: "+questions.message)
         }else {
             return {questions: questions.data, subject, topic}
         }

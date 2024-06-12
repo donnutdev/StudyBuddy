@@ -32,7 +32,7 @@ export async function GET({ url }): Promise<Response> {
         const data = {question: "This is a test question", parts: [{part: "This is a test part", answer: "This is a test answer"}]}
         return new Promise((resolve, reject) => {
             setTimeout(() => {
-                resolve(new Response(JSON.stringify({data}), {status: 200}))
+                resolve(new Response(JSON.stringify({error: true, message: `Unable to fulfill request due to technical issues, please try again later.`}), {status: 400}))
             }, 3000)
         })
     }
@@ -57,7 +57,7 @@ export async function GET({ url }): Promise<Response> {
         text = response.text();
         text = text.slice(7, -3)
     } catch (err) {
-        return new Response(JSON.stringify({error: true, message: `An error occurred while processing this request\nDetails: ${err}`}), {status: 400})
+        return new Response(JSON.stringify({error: true, message: err}), {status: 400})
     }
 
     const data = JSON.parse(text);
