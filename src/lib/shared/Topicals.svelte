@@ -9,11 +9,10 @@
     let latest_worksheet = $worksheet
 
     const handleWorksheetGeneration = () => {
-        if (Object.keys(topics).length === 0 || Object.keys(years).length === 0) {
-            dispatch("alert", {type: "error", message: "Please select a topic and year."})
-            return
-        }
         latest_worksheet = getTopicals(subject, topics, years)
+        latest_worksheet.then((data) => {
+            console.log(data)
+        })
         worksheet.set(latest_worksheet)
         worksheetOpen.set(true)
     }

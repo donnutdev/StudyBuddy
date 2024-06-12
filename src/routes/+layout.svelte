@@ -1,7 +1,10 @@
 <script>
     export let data;
     import "../app.css";
+    import {injectSpeedInsights} from "@vercel/speed-insights";
     import {invalidateAll, goto} from "$app/navigation";
+
+    injectSpeedInsights();
 
     let {supabase, session} = data
     $: ({ supabase, session } = data)

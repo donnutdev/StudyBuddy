@@ -15,9 +15,6 @@
         goto('/account')
     }
 
-    const alertHandler = () => {
-
-    }
 </script>
 
 <div class="hero min-h-screen bg-base-300 px-10 py-0">
@@ -51,9 +48,9 @@
             {#key active_tab}
                 <div class="container basis-4/5 lg:w-[900px] grow bg-none">
                         {#if active_tab === "pastpapers"}
-                            <PastPapers/>
+                            <PastPapers on:alert/>
                         {:else if active_tab === "creator"}
-                            <QuestionCreator  {supabase} {session}/>
+                            <QuestionCreator  {supabase} {session} on:alert/>
                         {:else if active_tab === "topicals"}
                             <Topicals on:alert/>
                         {/if}

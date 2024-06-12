@@ -1,9 +1,9 @@
 <script lang="ts">
     import type {Session, SupabaseClient} from "@supabase/supabase-js";
     import SvelteMarkdown from "svelte-markdown";
+    import {createEventDispatcher} from "svelte";
     export let supabase: SupabaseClient;
     export let session: Session;
-    import {createQuestion} from "$lib/geminiApi";
     import {SubjectTopics} from "$lib/static-files/SubjectTopics";
     import {generated_ques, generation_disabled, last_generated, current_countdown, starred, questionOpen} from "$lib/public/stores";
     import {onMount, onDestroy} from "svelte";
@@ -16,16 +16,15 @@
 
     $: subject_topics = SubjectTopics[subject]
 
-
-
     const debounce: number = 30000;
 
     function handleGeneration() {
         starred.set(true)
         generation_disabled.set(true)
         last_generated.set(Date.now())
-        generated = createQuestion(subject, topic, ["All"], 3)
+        generated = createQuestion(subject, topic, 3)
         generated.then(() => {
+            console.log(generated)
             starred.set(false)
         })
         generated_ques.set(generated)
@@ -95,7 +94,7 @@
             <div class="flex flex-col gap-4 w-full p-5 overflow-y-scroll h-full">
                 <div class=""><SvelteMarkdown source={question.questions.question} /></div>
                 {#each question.questions.parts as part, i}
-                    <div class="inline-flex"><span class="font-bold">{i+1}.</span><SvelteMarkdown source={part.part}/></div>
+                    <div class="inline-flex"><span class="font-bold pr-1">{i+1}.</span><SvelteMarkdown source={part.part}/></div>
                     <div class="blur transition duration-300 hover:blur-0"><SvelteMarkdown source={part.answer}/></div>
                 {/each}
             </div>
