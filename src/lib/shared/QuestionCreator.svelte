@@ -1,12 +1,12 @@
 <script lang="ts">
     import type {Session, SupabaseClient} from "@supabase/supabase-js";
     import SvelteMarkdown from "svelte-markdown";
-    import {createEventDispatcher} from "svelte";
     export let supabase: SupabaseClient;
     export let session: Session;
     import {SubjectTopics} from "$lib/static-files/SubjectTopics";
     import {generated_ques, generation_disabled, last_generated, current_countdown, starred, questionOpen} from "$lib/public/stores";
     import {onMount, onDestroy} from "svelte";
+    import {createQuestion} from "$lib/geminiApi";
 
     let subject: string = "Physics";
     let topic: string;
@@ -24,7 +24,6 @@
         last_generated.set(Date.now())
         generated = createQuestion(subject, topic, 3)
         generated.then(() => {
-            console.log(generated)
             starred.set(false)
         })
         generated_ques.set(generated)
@@ -34,7 +33,6 @@
 
     async function handleStar() {
         starred.set(true)
-        console.log($generated_ques)
         await generated.then(async (r) => {
             const {data, error} = await supabase
                 .from("generated_questions")

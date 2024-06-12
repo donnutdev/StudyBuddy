@@ -14,7 +14,6 @@ export async function createQuestion(subject: string, topic: string, numParts: n
         if (questions.error) {
             throw new Error("An error occured while processing this request\nDetails: "+questions.error)
         }else {
-            console.log(questions)
             return {questions: questions.data, subject, topic}
         }
     }
