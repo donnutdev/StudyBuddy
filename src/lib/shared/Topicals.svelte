@@ -61,7 +61,7 @@
                 {#each availableYears as year (year)}
                 <li>
                     <div class="form-control">
-                        <label class="flex label cursor-pointer gap-2">
+                        <label class="flex label cursor-pointer gap-2 overflow-x-hidden">
                             <input type="checkbox" class="checkbox" bind:checked={years[year]}/>
                             <span class="label-text">{year}</span>
                         </label>
@@ -76,7 +76,7 @@
                 {#each subject_topics as topic (topic._id)}
                 <li>
                     <div class="form-control">
-                        <label class="flex label cursor-pointer gap-2">
+                        <label class="flex label cursor-pointer gap-2 overflow-x-hidden">
                             <input type="checkbox" class="checkbox" bind:checked={topics[topic.name]}/>
                             <span class="label-text">{topic.name}</span>
                         </label>
@@ -91,7 +91,7 @@
                 {#each PAPERS["A Levels"][subject] as p (p)}
                     <li>
                         <div class="form-control">
-                            <label class="flex label cursor-pointer gap-2">
+                            <label class="flex label cursor-pointer gap-2 overflow-x-hidden">
                                 <input type="checkbox" class="checkbox" bind:checked={papers[p]}/>
                                 <span class="label-text">Component {p}</span>
                             </label>
