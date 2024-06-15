@@ -81,14 +81,13 @@
     </div>
     {#if $questionOpen}
         {#await generated}
-            <div class="flex flex-col gap-4 w-full p-5 overflow-y-scroll h-full">
+            <div class="flex flex-col gap-4 w-full p-5 overflow-y-scroll h-full ">
                 <div class="skeleton h-40"></div>
                 <div class="skeleton h-20"></div>
                 <div class="skeleton h-20"></div>
                 <div class="skeleton h-20"></div>
             </div>
         {:then question}
-            <!--<p hidden>{starred.set(false)}</p>-->
             <div class="flex flex-col gap-4 w-full p-5 overflow-y-scroll h-full">
                 <div class=""><SvelteMarkdown source={question.questions.question} /></div>
                 {#each question.questions.parts as part, i}
@@ -103,9 +102,10 @@
         {/await}
     {:else}
         <div class="flex flex-col gap-4 w-full p-5 overflow-y-scroll h-full">
-        <h1 class='text-primary text-xl'>
-            To generate a question, choose a subject and a topic. We will automatically generate a question catering to that specific topic along with answers.
-        </h1>
+            <h1 class='text-primary text-xl'>
+                To generate a question, choose a subject and a topic. We will automatically generate a question catering to that specific topic along with answers.<br/>
+                Since this uses AI, it may provide inaccurate answers or incomplete questions. If so, please regenerate the question.
+            </h1>
         </div>
     {/if}
 
