@@ -16,7 +16,7 @@
             return
         }
         latest_worksheet = getTopicals(subject, topics, years, papers)
-        latest_worksheet.then((w) => progress.set(0))
+        latest_worksheet.then((w) => {progress.set(0); generation_status.set("")})
         worksheet.set(latest_worksheet)
         worksheetOpen.set(true)
     }
@@ -125,7 +125,7 @@
     {/if}
     <div class="inline-flex items-center">
         <div class="inline-flex p-5 pb-0">
-            <button on:click={handleWorksheetGeneration} class="ring ring-primary relative btn leading-none disabled:bg-base-200 hover:bg-white w-44">Generate Worksheet</button>
+            <button on:click={handleWorksheetGeneration} disabled={$generation_status !== ""} class="ring ring-primary relative btn leading-none disabled:bg-base-200 hover:bg-white w-44">Generate Worksheet</button>
         </div>
         {#if $generation_status === "fetching"}
             <div class="inline-flex p-5 pb-0 w-full">
