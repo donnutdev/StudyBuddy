@@ -34,16 +34,25 @@ onmessage = async event => {
     }
 
 
-    const {data, error} = await supabaseTopicals
+    let query = supabaseTopicals
         .from("questions")
         .select()
         .eq("board", "A Levels")
         //@ts-ignore
         .eq("subject", subjectCodes[subject])
-        .overlaps("topics", topics_table)
         .in("year", years_table)
         .in("variant", [1, 2])
         .in("paper_number", paper_number)
+
+    if (topics_table.length) {
+        let or = [];
+        topics_table.forEach((topic) => {
+            or.push(`topics.cs.{${topic.replace(",", " ")}}`);
+        });
+        query = query.or(or.join(","));
+    }
+
+    let {data, error} = await query;
 
     let dupeTable = []
     let questionDoc = await PDFDocument.create()

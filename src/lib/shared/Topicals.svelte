@@ -131,6 +131,10 @@
             <div class="inline-flex p-5 pb-0 w-full">
                 <progress class="progress w-full h-10 relative leading-none" value="{$progress*100}" max="100"></progress>
             </div>
+        {:else if $generation_status === "saving"}
+            <div class="inline-flex p-5 pb-0 w-full">
+                <progress class="progress w-full h-10 relative leading-none"></progress>
+            </div>
         {/if}
     </div>
 </div>

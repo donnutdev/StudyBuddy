@@ -80,7 +80,7 @@ export const TOPICS: {
         Physics: [
             {
                 _id: "62c89286ba0f91aff17fa973",
-                name: " CH 1 - PHYSICAL QUANTITIES and UNITS",
+                name: " CH 1 - PHYSICAL QUANTITIES & UNITS",
                 topicNumber: 330,
                 subject: "Physics",
             },
