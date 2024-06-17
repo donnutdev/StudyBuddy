@@ -15,6 +15,9 @@ Study buddy is a website where students can find resources for practice. It is c
 - **Support for CIE A Levels** – StudyBuddy supports CAIE A Level resources for a specific number of subjects.
 
 ### Upcoming Features (In Development)
+- **Sub-Topic Support** - Addition of choice of sub topics for the question creator to allow more flexibility and more accuracy in questions and answers.
+
+
 - **Study Plan** – Use the website’s powerful timeline-based planner to plan how you spend your week relating to studies. You can choose specific goals in your study plan and gain points and achievements when you complete those goals. Goals can be completing specific past papers, completing specific topical papers. You can also add custom goals that can’t be tracked by the website, so you would have to label them as completed on your own.
 
  
