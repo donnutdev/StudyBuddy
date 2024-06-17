@@ -118,7 +118,7 @@
         {:catch err}
             <div class="flex flex-col gap-4 w-full p-5 overflow-y-scroll h-full">
                 <h1 class='text-primary text-xl'>
-                    Couldn't generate a worksheet.<br/>Details: {err.message}
+                    Couldn't generate a worksheet.<br/>Details: {err}
                 </h1>
             </div>
         {/await}
