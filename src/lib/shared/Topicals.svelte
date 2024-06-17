@@ -11,12 +11,12 @@
     let latest_worksheet = $worksheet
 
     const handleWorksheetGeneration = () => {
-        if (Object.keys(topics).length === 0 || Object.keys(years).length === 0) {
+        if (Object.keys(topics).length === 0 || Object.keys(years).length === 0 || Object.keys(papers).length === 0){
             alert("Please select a topic and year to generate a worksheet")
             return
         }
         latest_worksheet = getTopicals(subject, topics, years, papers)
-        latest_worksheet.then((w) => {progress.set(0); generation_status.set("")})
+        latest_worksheet.finally(() => {progress.set(0); generation_status.set("")})
         worksheet.set(latest_worksheet)
         worksheetOpen.set(true)
     }
@@ -114,6 +114,12 @@
                 <h1 class="text-primary text-xl">Your files are ready! Click the buttons below to download the pdf. Downloads may take up to a few seconds.</h1>
                 <button class="btn" on:click={downloadQuestion}>Question Paper</button>
                 <button class="btn" on:click={downloadMarkScheme}>Mark Scheme</button>
+            </div>
+        {:catch err}
+            <div class="flex flex-col gap-4 w-full p-5 overflow-y-scroll h-full">
+                <h1 class='text-primary text-xl'>
+                    Couldn't generate a worksheet.<br/>Details: {err.message}
+                </h1>
             </div>
         {/await}
     {:else}

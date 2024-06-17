@@ -53,6 +53,15 @@ onmessage = async event => {
     }
 
     let {data, error} = await query;
+    if (error) {
+        console.error(error);
+        postMessage({ev_type: "error", error: error.message})
+        return;
+    }else if (data.length === 0) {
+        postMessage({ev_type: "error", error: "No questions found"})
+        return;
+
+    }
 
     let dupeTable = []
     let questionDoc = await PDFDocument.create()

@@ -18,6 +18,8 @@ export async function getTopicals(subject: string, topics: {string: boolean}, ye
                 progress.set(e.data.progress)
             }else if (e.data.ev_type === "status") {
                 generation_status.set(e.data.status)
+            }else if (e.data.ev_type === "error") {
+                reject(e.data.error)
             }
         }
     })
