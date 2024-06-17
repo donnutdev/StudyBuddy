@@ -22,7 +22,7 @@
     }
 
 
-    let subject = "Physics";
+    let subject = "Mathematics";
     let topics: any = {}
     let years: any= {}
     let papers: any= {}
@@ -52,8 +52,13 @@
 <div class="flex flex-col place-content-between h-full xl:min-w-[900px]">
     <div class="inline-flex gap-2 p-5 pt-0">
         <select id="subject" class="select select-bordered w-full min-w-xs" bind:value={subject} on:change={clearHandler}>
-            <option selected>Physics</option>
-            <option>Mathematics</option>
+            {#each Object.keys(TOPICS["A Levels"]) as subj, i (subj)}
+                {#if i === 0}
+                    <option value={subj} selected>{subj}</option>
+                {:else}
+                    <option value={subj}>{subj}</option>
+                {/if}
+            {/each}
         </select>
         <div class="dropdown dropdown-hover dropdown-bottom dropdown-end w-full min-w-xs">
             <div tabindex="-1" role="button" class="btn bg-base-100 w-full no-animation">Years</div>

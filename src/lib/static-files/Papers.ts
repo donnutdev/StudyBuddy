@@ -18,9 +18,9 @@ export const PAPERS: {
         Physics: ["1 (Core)", "2 (Extended)", "3 (Core)", "4 (Extended)", "5", "6"],
     },
     "A Levels": {
-        Biology: ["1", "2", "3", "4", "5"],
-        Chemistry: ["1", "2", "3", "4", "5"],
-        Physics: ["1", "2", "3", "4", "5"],
+        Biology: ["1", "2", "4"],
+        Chemistry: ["1", "2", "4",],
+        Physics: ["1", "2", "4"],
         "Computer Science": ["1"],
         Economics: ["1", "3"],
         Mathematics: ["1", "3", "4", "5", "6", "7"],

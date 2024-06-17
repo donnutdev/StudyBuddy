@@ -39,6 +39,7 @@ export async function GET({ url }): Promise<Response> {
 
     const prompt = "Generate A Question for me.\n" +
         "Only include the question, its separate parts, and the answer for each part.\n" +
+        "Grade: A Level (Grade 11 and 12)" +
         `Subject: ${subject}\n` +
         `Topic: ${topic}\n` +
         `Sub-Topics: ${subTopics.toString()}\n` +

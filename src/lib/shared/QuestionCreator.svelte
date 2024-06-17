@@ -65,16 +65,24 @@
 <div class="flex flex-col place-content-between h-full">
     <div class="inline-flex gap-2 p-5 pt-0">
         <select class="select select-bordered w-full min-w-xs" bind:value={subject}>
-            <option selected>Physics</option>
-            <option>Mathematics</option>
-            <option>Information Technology</option>
+            {#each Object.keys(SubjectTopics) as subj, i (subj)}
+                {#if subj.startsWith("div")}
+                    <option disabled>{subj.split(" ").slice(1).join(" ")}</option>
+                {:else if i === 0}
+                    <option value={subj} selected>{subj}</option>
+                {:else}
+                    <option value={subj}>{subj}</option>
+                {/if}
+            {/each}
         </select>
         <select id="topic" class="select select-bordered w-full min-w-xs" bind:value={topic}>
             {#each subject_topics as topic, i (topic)}
-                {#if i === 0}
-                    <option selected>{topic}</option>
+                {#if topic.startsWith("div")}
+                    <option disabled>{topic.split(" ").slice(1).join(" ")}</option>
+                {:else if i === 0}
+                    <option value={topic} selected>{topic}</option>
                 {:else}
-                    <option>{topic}</option>
+                    <option value={topic}>{topic}</option>
                 {/if}
             {/each}
         </select>
