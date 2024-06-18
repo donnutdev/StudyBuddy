@@ -47,13 +47,13 @@
             </div>
             {#key active_tab}
                 <div class="container basis-4/5 lg:w-[900px] grow bg-none">
-                        {#if active_tab === "pastpapers"}
-                            <PastPapers on:alert/>
-                        {:else if active_tab === "creator"}
-                            <QuestionCreator  {supabase} {session} on:alert/>
-                        {:else if active_tab === "topicals"}
-                            <Topicals on:alert/>
-                        {/if}
+                    {#if active_tab === "pastpapers"}
+                        <PastPapers on:alert/>
+                    {:else if active_tab === "creator"}
+                        <QuestionCreator  {supabase} {session} on:alert/>
+                    {:else if active_tab === "topicals"}
+                        <Topicals on:alert/>
+                    {/if}
                 </div>
             {/key}
         </div>

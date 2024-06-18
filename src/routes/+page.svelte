@@ -14,7 +14,7 @@
         <div class="max-w-xl text-center">
             <h1 class="text-primary text-4xl">Ace your exams with</h1>
 
-            <h1 class="text-7xl font-bold bg-gradient-to-r from-blue-500 via-teal-300 to-indigo-600 inline-block text-transparent bg-clip-text pb-3">StudyBuddy</h1>
+            <h1 class="text-7xl font-bold bg-gradient-to-r from-blue-500 via-teal-300 to-indigo-600 inline-block text-transparent bg-clip-text pb-3">StudyHaven</h1>
             {#if session == null}
                 <p class="py-6">Use the power of artificial intelligence to enhance your study pattern, manage your timeline for your academic year and ace your exams.</p>
                 <div class="relative inline-flex group">
