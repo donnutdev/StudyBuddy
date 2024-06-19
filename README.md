@@ -1,6 +1,6 @@
-# StudyBuddy Project
+# StudyHaven Project
 
-Study buddy is a website where students can find resources for practice. It is completely open source and free for students. On StudyBuddy, you can generate topical questions pdfs, custom questions using AI and plan your studies.
+Study buddy is a website where students can find resources for practice. It is completely open source and free for students. On StudyHaven, you can generate topical questions pdfs, custom questions using AI and plan your studies.
 
 ---
 
@@ -12,9 +12,12 @@ Study buddy is a website where students can find resources for practice. It is c
 - **Topical Questions** – Generate PDF documents of hundreds of questions correlating to specific topics the user can choose. You can generate pdfs based on the years of question papers, their subject, their component and topics.
 
 
-- **Support for CIE A Levels** – StudyBuddy supports CAIE A Level resources for a specific number of subjects.
+- **Support for CIE A Levels** – StudyHaven supports CAIE A Level resources for a specific number of subjects.
 
 ### Upcoming Features (In Development)
+- **Flash Cards** - Flashcards generator, users will be able to create flashcards that will have a word/keyword and a definition on the back. They can also export their flashcards as a pdf where they can print it double sided.
+
+
 - **Sub-Topic Support** - Addition of choice of sub topics for the question creator to allow more flexibility and more accuracy in questions and answers.
 
 
@@ -27,16 +30,16 @@ Study buddy is a website where students can find resources for practice. It is c
 - **Plan Advice** – Use the power of AI to generate a study plan that can benefit you. You can include multiple details such as how much time you would like to dedicate to studying per day, what activities you usually do daily and what activities you would like to add. The AI will generate a study plan that may benefit you based on your situation. You can include activities such as hobbies and other tests that you may be studying for. Uses google's gemini-1.5-flash model.
  
 
-- **Profiles (About Me)** – Students can build their profile on StudyBuddy to include a profile picture, their name, their nickname, their biography or about me, and more. The profile will list all the student’s achievements and subjects.
+- **Profiles (About Me)** – Students can build their profile on StudyHaven to include a profile picture, their name, their nickname, their biography or about me, and more. The profile will list all the student’s achievements and subjects.
 
 ### Planned Features
 - **Resource Forum** – A place where students can help each other by posting resources. The forum will be protected by (hopefully) an AI moderator to stop students from sending troll posts. Posts can include pdfs and/or website links to resources. PDF resources that are sent can be uploaded to the website under the condition that the size is less than 10 megabytes.
  
 
-- **Support for IGCSE** – StudyBuddy will support study resources for students of IGCSE (grade 9 and 10)
+- **Support for IGCSE** – StudyHaven will support study resources for students of IGCSE (grade 9 and 10)
  
 
-- **Support for Edexcel IAL** – StudyBuddy will support study resources for students of Edexcel IAL.
+- **Support for Edexcel IAL** – StudyHaven will support study resources for students of Edexcel IAL.
 ---
 
 ## Project Technical Details
@@ -49,12 +52,19 @@ Study buddy is a website where students can find resources for practice. It is c
 | PDF Generation   | pdf-lib                             |
 
 ---
+## Latest Updates
+### 20/06/2024
+- Refined UI for larger devices.
+- Added flash cards tab, actual feature is still in development
+- Topical questions uses dropdown radio instead of select to match other dropdowns
+
+---
 ## I'm Still Learning!
-I'm still learning new concepts, this website was a test of my knowledge of svelte and sveltekit. If you encounter any issues on the website, or if you just want to reach out to me, please contact me know at `mario.developer.183@gmail.com`
+I'm still learning new concepts, this website was a test of my knowledge of svelte and sveltekit. If you encounter any issues on the website, or if you just want to reach out to me, please contact me at `mario.developer.183@gmail.com`
 
 ---
 ## Credits
-- **Developers** – [Mario (mario)](https://portfolio.magery.dev/)
+- **Developers** – [Mario](https://portfolio.magery.dev/)
 
 ---
 ## Support Me

@@ -62,7 +62,7 @@
     })
 </script>
 
-<div class="flex flex-col place-content-between h-full">
+<div class="flex flex-col place-content-between h-full xl:min-w-[900px]">
     <div class="inline-flex gap-2 p-5 pt-0">
         <select class="select select-bordered w-full min-w-xs" bind:value={subject}>
             {#each Object.keys(SubjectTopics) as subj, i (subj)}
@@ -121,7 +121,7 @@
         <div>
             <div class="inline-flex gap-5 p-5 pb-0">
                 <div class="relative inline-flex group">
-                    <div class="absolute transition-all duration-1000 opacity-70 -inset-px bg-gradient-to-r from-blue-500 via-teal-300 to-indigo-600 rounded-xl blur-lg group-hover:opacity-100 group-hover:-inset-1 group-hover:duration-200 animate-tilt p-3"></div>
+                    <div class="absolute transition-all duration-300 opacity-70 -inset-px bg-gradient-to-r from-blue-500 via-teal-300 to-indigo-600 rounded-xl blur-lg group-hover:opacity-100 group-hover:-inset-1 group-hover:duration-300 animate-tilt p-3"></div>
                     <button disabled={$generation_disabled} on:click={handleGeneration} class="ring ring-primary relative btn leading-none disabled:bg-base-200 hover:bg-white w-44">
                     <span class:hidden={!$generation_disabled} class="countdown text-2xl text-black content-center">
                         <span style="--value:{Math.round($current_countdown/1000)};"></span>

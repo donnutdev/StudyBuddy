@@ -23,6 +23,7 @@
 
 
     let subject = "Mathematics";
+    $: console.log(subject)
     let topics: any = {}
     let years: any= {}
     let papers: any= {}
@@ -31,6 +32,11 @@
     const clearHandler = () => {
         topics = {}
         years = {}
+    }
+
+    async function changeSub(e) {
+        subject = e.target.value;
+        clearHandler()
     }
 
     async function downloadQuestion() {
@@ -51,24 +57,30 @@
 
 <div class="flex flex-col place-content-between h-full xl:min-w-[900px]">
     <div class="inline-flex gap-2 p-5 pt-0">
-        <select id="subject" class="select select-bordered w-full min-w-xs" bind:value={subject} on:change={clearHandler}>
-            {#each Object.keys(TOPICS["A Levels"]) as subj, i (subj)}
-                {#if i === 0}
-                    <option value={subj} selected>{subj}</option>
-                {:else}
-                    <option value={subj}>{subj}</option>
-                {/if}
-            {/each}
-        </select>
+        <div class="dropdown dropdown-hover dropdown-bottom dropdown-end w-full min-w-xs">
+            <div tabindex="-1" role="button" class="btn bg-base-100 w-full no-animation">Subject</div>
+            <ul tabindex="-1" class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-full max-h-[50vh] overflow-scroll  flex-nowrap">
+                {#each Object.keys(TOPICS["A Levels"]) as subj, i (subj)}
+                    <li>
+                        <div class="form-control">
+                            <label class="flex label cursor-pointer gap-2 overflow-x-hidden w-full">
+                                <input type="radio" name="subject-radio" class="radio" value={subj} on:change={changeSub} checked={subject===subj}/>
+                                <span class="label-text w-full">{subj}</span>
+                            </label>
+                        </div>
+                    </li>
+                {/each}
+            </ul>
+        </div>
         <div class="dropdown dropdown-hover dropdown-bottom dropdown-end w-full min-w-xs">
             <div tabindex="-1" role="button" class="btn bg-base-100 w-full no-animation">Years</div>
             <ul tabindex="-1" class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-full max-h-[50vh] overflow-scroll  flex-nowrap">
                 {#each availableYears as year (year)}
                 <li>
                     <div class="form-control">
-                        <label class="flex label cursor-pointer gap-2 overflow-x-hidden">
+                        <label class="flex label cursor-pointer gap-2 overflow-x-hidden w-full">
                             <input type="checkbox" class="checkbox" bind:checked={years[year]}/>
-                            <span class="label-text">{year}</span>
+                            <span class="label-text w-full">{year}</span>
                         </label>
                     </div>
                 </li>
@@ -128,7 +140,7 @@
             </div>
         {/await}
     {:else}
-        <div class="flex flex-col gap-4 w-full p-5 overflow-y-scroll h-full">
+        <div class="flex flex-col gap-4 w-full p-5 h-full">
             <h1 class='text-primary text-xl'>
                 To generate a worksheet, choose a subject, year and topic and click the generate button below.<br/>Worksheets are meant to be used for practice and not examination purposes.
             </h1>
