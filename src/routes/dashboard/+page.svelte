@@ -17,10 +17,10 @@
 
 </script>
 
-<div class="hero min-h-screen bg-base-300 px-10 py-0">
-    <div class="hero-content w-full lg:min-w-[1000px]">
-        <div class="flex flex-row items-stretch gap-4 justify-between h-[70vh]">
-            <div class="container basis-1/5 grow drop-shadow h-full">
+<div class="container mx-auto bg-base-300 min-h-screen py-0 pt-16 pb-5 place-content-center align-middle">
+    <div class="container z-0 w-full lg:min-w-[1000px]">
+        <div class="flex flex-row items-stretch gap-4 justify-between h-[80vh]">
+            <div class="container z-0 basis-1/5 grow drop-shadow h-full">
                 <ul class="menu bg-base-200 min-w-60 rounded-box h-full">
                     <li>
                         <h2 class="menu-title">Planning</h2>
@@ -36,6 +36,8 @@
                             <li>
                                 <a class:active={active_tab === "creator"} on:click={() => active_tab = "creator"}>Question Creator<div class="badge badge-secondary">beta</div></a>
                             </li>
+                            <li ><a class:active={active_tab === "flashcards"} on:click={() => active_tab = "flashcards"}>Flash Cards</a></li>
+
                         </ul>
                         <h2 class="menu-title">Profile</h2>
                         <ul>
@@ -46,7 +48,7 @@
                 </ul>
             </div>
             {#key active_tab}
-                <div class="container basis-4/5 lg:w-[900px] grow bg-none">
+                <div class="container z-0 basis-4/5 lg:w-[900px] grow bg-none">
                     {#if active_tab === "pastpapers"}
                         <PastPapers on:alert/>
                     {:else if active_tab === "creator"}
