@@ -6,23 +6,66 @@
     import {SubjectTopics} from "$lib/static-files/SubjectTopics";
     import {generated_ques, generation_disabled, last_generated, current_countdown, starred, questionOpen} from "$lib/public/stores";
     import {onMount, onDestroy} from "svelte";
-    import {createQuestion} from "$lib/geminiApi";
+    import {createQuestion, regenerateQuestion} from "$lib/geminiApi";
 
     let subject: string = "Physics";
     let topic: string;
     let generated: any = $generated_ques;
 
     let countdownInterval: any;
+    let selected_text = "";
+    $: currently_quoted = selected_text.length > 0
 
     $: subject_topics = SubjectTopics[subject]
 
     const debounce: number = 30000;
 
-    function handleGeneration() {
+    function makeid() {
+        let result = '';
+        const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        const charactersLength = characters.length;
+        let counter = 0;
+        while (counter < 5) {
+            result += characters.charAt(Math.floor(Math.random() * charactersLength));
+            counter += 1;
+        }
+        return result;
+    }
+
+    function processLatex(process_string: string) {
+        let found_latex = false;
+        let index = 0;
+        let id_latex = {}
+        for (let c = 0; c < process_string.length; c++) {
+            if (process_string[c] === "$" && found_latex === true) {
+                if (c - index > 15) {
+                    continue
+                }
+                found_latex = false
+                const newLatex = process_string.substring(index, c)
+                const newId = makeid()
+                process_string.replace(newLatex, newId)
+                id_latex[newId] = newLatex
+            }else if (process_string[c] === "$" && found_latex === false){
+                index = c
+                found_latex = true
+            }
+        }
+        return {process_string, id_latex}
+    }
+
+    function handleGeneration(regenerate=false) {
+        selected_text = "";
         starred.set(true)
         generation_disabled.set(true)
         last_generated.set(Date.now())
-        generated = createQuestion(subject, topic, 3)
+        if (regenerate == true){
+            generated.then((d) => {
+                generated = regenerateQuestion(d, selected_text)
+            })
+        }else {
+            generated = createQuestion(subject, topic, 3)
+        }
         generated.then(() => {
             starred.set(false)
         })
@@ -60,6 +103,26 @@
     onDestroy(() => {
         clearInterval(countdownInterval)
     })
+
+    function getSelected() {
+        if(window.getSelection) { return window.getSelection(); }
+        else if(document.getSelection) { return document.getSelection(); }
+        else {
+            var selection = document.selection && document.selection.createRange();
+            if(selection.text) { return selection.text; }
+            return false;
+        }
+    }
+
+    function showPopup() {
+        const selection = getSelected()
+
+        if (selection && selection.toString().length > 0) {
+            selected_text = selection.toString()
+        }else{
+            selected_text = ""
+        }
+    }
 </script>
 
 <div class="flex flex-col place-content-between h-full xl:min-w-[900px]">
@@ -96,7 +159,7 @@
                 <div class="skeleton h-20"></div>
             </div>
         {:then question}
-            <div class="flex flex-col gap-4 w-full p-5 overflow-y-scroll h-full">
+            <div class="flex flex-col gap-4 w-full p-5 overflow-y-scroll h-full" on:mouseup={showPopup} role="textbox" tabindex="-1">
                 <div class=""><SvelteMarkdown source={question.questions.question} /></div>
                 {#each question.questions.parts as part, i}
                     <div class="inline-flex"><span class="font-bold pr-1">{i+1}.</span><SvelteMarkdown source={part.part}/></div>
@@ -132,7 +195,6 @@
             </div>
         </div>
         <div>
-
             <div class="inline-flex gap-5 p-5 pb-0">
                 <div class="relative inline-flex group">
                     <div class="tooltip tooltip-right" data-tip="Think this question is great? Click this so we know!">
@@ -143,6 +205,20 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <div>
+            <div class="inline-flex gap-5 p-5 pb-0" class:hidden={!currently_quoted}>
+                <div class="relative inline-flex group">
+                    <div class="tooltip tooltip-right" data-tip="Think this question has an error? Click this to regenerate it!">
+                    <button on:click={() => handleGeneration(true)} class="relative btn leading-none disabled:bg-base-200 hover:bg-white">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" class="swap-off fill-red-600"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M14 6l-1-2H5v17h2v-7h5l1 2h7V6h-6zm4 8h-4l-1-2H7V6h5l1 2h5v6z"/></svg>
+                    </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="inline-flex gap-5 p-5 pb-0 my-auto place-content-center">
+            <p class:hidden={currently_quoted} class="w-80">If you think this question has an error, highlight the part with the error.</p>
         </div>
     </div>
 

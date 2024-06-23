@@ -53,6 +53,12 @@ Study buddy is a website where students can find resources for practice. It is c
 
 ---
 ## Latest Updates
+### 24/06/2024
+- Added flashcards function (Exporting will be available in the next update)
+- Added a feature for you to regenerate questions in the question creator in case of bad question
+- Added computer science from 2021 and economics paper 2 and 4 to topical questions
+- 
+
 ### 20/06/2024
 - Refined UI for larger devices.
 - Added flash cards tab, actual feature is still in development

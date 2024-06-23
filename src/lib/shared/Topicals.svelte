@@ -1,7 +1,7 @@
 <script lang="ts">
     import {createEventDispatcher} from "svelte";
     import {worksheetOpen, worksheet, progress, generation_status} from "$lib/public/stores";
-    import {getTopicals} from "$lib/worksheetApi";
+    import {getTopicals} from "$lib/workerApi";
     import {TOPICS} from "$lib/static-files/MHTopicBinds";
     import {PAPERS} from "$lib/static-files/Papers";
     import {availableYears} from "$lib/static-files/PastPaperInfo";
@@ -58,8 +58,8 @@
 <div class="flex flex-col place-content-between h-full xl:min-w-[900px]">
     <div class="inline-flex gap-2 p-5 pt-0">
         <div class="dropdown dropdown-hover dropdown-bottom dropdown-end w-full min-w-xs">
-            <div tabindex="-1" role="button" class="btn bg-base-100 w-full no-animation">Subject</div>
-            <ul tabindex="-1" class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-full max-h-[50vh] overflow-scroll  flex-nowrap">
+            <div tabindex="-1" role="button" class="btn w-full no-animation">Subject</div>
+            <ul tabindex="-1" class="dropdown-content z-[1] menu p-2 shadow bg-base-300 rounded-box w-full max-h-[50vh] overflow-scroll  flex-nowrap">
                 {#each Object.keys(TOPICS["A Levels"]) as subj, i (subj)}
                     <li>
                         <div class="form-control">
@@ -73,8 +73,8 @@
             </ul>
         </div>
         <div class="dropdown dropdown-hover dropdown-bottom dropdown-end w-full min-w-xs">
-            <div tabindex="-1" role="button" class="btn bg-base-100 w-full no-animation">Years</div>
-            <ul tabindex="-1" class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-full max-h-[50vh] overflow-scroll  flex-nowrap">
+            <div tabindex="-1" role="button" class="btn w-full no-animation">Years</div>
+            <ul tabindex="-1" class="dropdown-content z-[1] menu p-2 shadow bg-base-300 rounded-box w-full max-h-[50vh] overflow-scroll  flex-nowrap">
                 {#each availableYears as year (year)}
                 <li>
                     <div class="form-control">
@@ -88,8 +88,8 @@
             </ul>
         </div>
         <div class="dropdown dropdown-hover dropdown-bottom dropdown-end w-full min-w-xs">
-            <div tabindex="-2" role="button" class="btn bg-base-100 w-full no-animation">Topics</div>
-            <ul tabindex="-2" class="dropdown-content z-[] menu p-2 shadow bg-base-100 rounded-box w-full max-h-[50vh] overflow-scroll flex-nowrap">
+            <div tabindex="-2" role="button" class="btn w-full no-animation">Topics</div>
+            <ul tabindex="-2" class="dropdown-content z-[] menu p-2 shadow bg-base-300 rounded-box w-full max-h-[50vh] overflow-scroll flex-nowrap">
                 {#each subject_topics as topic (topic._id)}
                 <li>
                     <div class="form-control">
@@ -103,8 +103,8 @@
             </ul>
         </div>
         <div class="dropdown dropdown-hover dropdown-bottom dropdown-end w-full min-w-xs">
-            <div tabindex="-2" role="button" class="btn bg-base-100 w-full no-animation">Component</div>
-            <ul tabindex="-2" class="dropdown-content z-[] menu p-2 shadow bg-base-100 rounded-box w-full max-h-[50vh] overflow-scroll flex-nowrap">
+            <div tabindex="-2" role="button" class="btn w-full no-animation">Component</div>
+            <ul tabindex="-2" class="dropdown-content z-[] menu p-2 shadow bg-base-300 rounded-box w-full max-h-[50vh] overflow-scroll flex-nowrap">
                 {#each PAPERS["A Levels"][subject] as p (p)}
                     <li>
                         <div class="form-control">

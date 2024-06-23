@@ -42,13 +42,14 @@ export async function GET({ url }): Promise<Response> {
         "Grade: A Level (Grade 11 and 12)" +
         `Subject: ${subject}\n` +
         `Topic: ${topic}\n` +
-        `Sub-Topics: ${subTopics.toString()}\n` +
         `Number of Parts: ${numParts}\n` +
-        "Return in raw json format\n" +
         "Separate the main question and each part of the question and DO NOT include the part letter or part number.\n" +
-        "The returned json must have a question key and a parts key\n" +
         "The parts key must be an array of objects with part and answer keys\n" +
-        "USE ONLY MARKDOWN. DO NOT include the parts in the question key.\n"
+        "USE ONLY MARKDOWN. DO NOT include the parts in the question key.\n" +
+        "ALWAYS EXPLAIN THE ANSWERS\n" +
+        "ALWAYS USE THE TEX FORMAT FOR MATHEMATICAL EQUATIONS AND REPRESENTATIONS" +
+        "Return in raw json format\n" +
+        "The returned json must have a question key and a parts key\n"
 
     let text: string;
 

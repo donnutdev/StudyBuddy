@@ -491,6 +491,130 @@ export const TOPICS: {
                 subject: "Chemistry",
             },
         ].sort((a, b) => getTopicNumber(a.name) - getTopicNumber(b.name)),
+
+        "Computer Science (2021)": [
+            {
+                _id: "1",
+                name: " CH1 - Information Representation",
+                topicNumber: 1000,
+                subject: "Computer Science (2021)"
+            },
+            {
+                _id: "2",
+                name: " CH2 - Communication",
+                topicNumber: 1001,
+                subject: "Computer Science (2021)"
+            },
+            {
+                _id: "3",
+                name: " CH3 - Hardware",
+                topicNumber: 1002,
+                subject: "Computer Science (2021)"
+            },
+            {
+                _id: "4",
+                name: " CH4 - Processor Fundamentals",
+                topicNumber: 1003,
+                subject: "Computer Science (2021)"
+            },
+            {
+                _id: "5",
+                name: " CH5 - System Software (OS)",
+                topicNumber: 1004,
+                subject: "Computer Science (2021)"
+            },
+            {
+                _id: "6",
+                name: " CH6 - Security Privacy And Data Integrity",
+                topicNumber: 1005,
+                subject: "Computer Science (2021)"
+            },
+            {
+                _id: "7",
+                name: " CH7 - Ethics And Ownership",
+                topicNumber: 1006,
+                subject: "Computer Science (2021)"
+            },
+            {
+                _id: "8",
+                name: " CH8 - Databases",
+                topicNumber: 1007,
+                subject: "Computer Science (2021)"
+            },
+            {
+                _id: "9",
+                name: " CH9 - Algorithm Design And Problem-Solving",
+                topicNumber: 1008,
+                subject: "Computer Science (2021)"
+            },
+            {
+                _id: "10",
+                name: " CH10 - Data Types And Structures",
+                topicNumber: 1009,
+                subject: "Computer Science (2021)"
+            },
+            {
+                _id: "11",
+                name: " CH11 - Programming",
+                topicNumber: 1010,
+                subject: "Computer Science (2021)"
+            },
+            {
+                _id: "12",
+                name: " CH12 - Software Development",
+                topicNumber: 1011,
+                subject: "Computer Science (2021)"
+            },
+            {
+                _id: "13",
+                name: " CH13 - Data Representation",
+                topicNumber: 1012,
+                subject: "Computer Science (2021)"
+            },
+            {
+                _id: "14",
+                name: " CH14 - Communication And Internet Technologies",
+                topicNumber: 1013,
+                subject: "Computer Science (2021)"
+            },
+            {
+                _id: "15",
+                name: " CH15 - Hardware And Virtual Machines",
+                topicNumber: 1014,
+                subject: "Computer Science (2021)"
+            },
+            {
+                _id: "16",
+                name: " CH16 - System Software (Purposes Of An OS)",
+                topicNumber: 1015,
+                subject: "Computer Science (2021)"
+            },
+            {
+                _id: "17",
+                name: " CH17 - Security",
+                topicNumber: 1016,
+                subject: "Computer Science (2021)"
+            },
+            {
+                _id: "18",
+                name: " CH18 - Artificial Intelligence (AI)",
+                topicNumber: 1017,
+                subject: "Computer Science (2021)"
+            },
+            {
+                _id: "19",
+                name: " CH19 - Computational Thinking And Problem Solving",
+                topicNumber: 1018,
+                subject: "Computer Science (2021)"
+            },
+            {
+                _id: "20",
+                name: " CH20 - Further Programming",
+                topicNumber: 1019,
+                subject: "Computer Science (2021)"
+            },
+
+        ].sort((a, b) => getTopicNumber(a.name) - getTopicNumber(b.name)),
         "Computer Science": [
             {
                 _id: "62c8990659731b9139a88593",

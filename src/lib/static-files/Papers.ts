@@ -22,7 +22,8 @@ export const PAPERS: {
         Chemistry: ["1", "2", "4",],
         Physics: ["1", "2", "4"],
         "Computer Science": ["1"],
-        Economics: ["1", "3"],
-        Mathematics: ["1", "3", "4", "5", "6", "7"],
+        "Computer Science (2021)": ["1", "3"],
+        Economics: ["1", "2", "3", "4"],
+        Mathematics: ["1", "3", "5", "6", "7"],
     },
 };
